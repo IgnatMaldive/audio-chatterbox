@@ -1,69 +1,116 @@
-# Welcome to your Lovable project
 
-## Project info
+# Audio-Enabled Chatbot with Text-to-Speech Streaming  
 
-**URL**: https://lovable.dev/projects/d9c8cb62-34b7-4d2e-94a6-48895f34db19
+Welcome to the **Audio-Enabled Chatbot** project! This repository contains the code for a chatbot interface that combines OpenAI's API with real-time text-to-speech streaming capabilities, delivering a seamless conversational experience with both text and audio outputs.  
 
-## How can I edit this code?
+---
 
-There are several ways of editing your application.
+## Features  
 
-**Use Lovable**
+### Version 1  
+- **Chat Interface**: A clean, modern interface for user-bot conversations.  
+- **Message History**: Tracks the chat history to maintain context.  
+- **Real-Time Text-to-Speech**: Converts bot responses into audio for playback.  
+- **Audio Playback Controls**: Play, pause, and resume bot responses.  
+- **Smooth Animations**: Subtle transitions for message rendering and audio playback states.  
+- **Visual Feedback**: Indicators for audio states (playing, paused, loading).  
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/d9c8cb62-34b7-4d2e-94a6-48895f34db19) and start prompting.
+---
 
-Changes made via Lovable will be committed automatically to this repo.
+## Design  
 
-**Use your preferred IDE**
+- **Colors**: Clean whites, soft grays, and accent colors for interactive elements.  
+- **Typography**: Modern, readable fonts for clear communication.  
+- **Animations**: Smooth transitions for messages and pulsing effects for active audio playback.  
+- **Layout**: Full-height chat window with a fixed input bar at the bottom.  
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+---
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+## Installation  
 
-Follow these steps:
+1. **Clone the Repository**  
+   ```bash  
+   git clone https://github.com/your-username/audio-chatbot.git  
+   cd audio-chatbot  
+   ```  
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+2. **Install Dependencies**  
+   Use the package manager of your choice:  
+   ```bash  
+   npm install  
+   ```  
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+3. **Set Up Environment Variables**  
+   Create a `.env` file in the project root and add your OpenAI API key:  
+   ```env  
+   OPENAI_API_KEY=your-api-key  
+   ```  
 
-# Step 3: Install the necessary dependencies.
-npm i
+4. **Start the Development Server**  
+   ```bash  
+   npm start  
+   ```  
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
+---
 
-**Edit a file directly in GitHub**
+## How It Works  
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+1. **User Interaction**  
+   Users type messages into the chat input field and press send.  
 
-**Use GitHub Codespaces**
+2. **Bot Response**  
+   The chatbot processes user messages using OpenAI's API and generates a response.  
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+3. **Text-to-Speech**  
+   Bot responses are converted into audio using a text-to-speech streaming service.  
 
-## What technologies are used for this project?
+4. **Audio Playback**  
+   The interface provides play/pause controls and visual feedback for audio playback states.  
 
-This project is built with .
+---
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+## Project Structure  
 
-## How can I deploy this project?
+```plaintext  
+audio-chatbot/  
+├── public/                 # Static assets  
+├── src/  
+│   ├── components/         # React components (ChatWindow, Message, AudioPlayer)  
+│   ├── styles/             # CSS styles  
+│   ├── utils/              # Helper functions (e.g., API calls, audio management)  
+│   ├── App.js              # Main app component  
+│   └── index.js            # Entry point  
+├── .env                    # Environment variables  
+├── package.json            # Project dependencies  
+└── README.md               # Project documentation  
+```  
 
-Simply open [Lovable](https://lovable.dev/projects/d9c8cb62-34b7-4d2e-94a6-48895f34db19) and click on Share -> Publish.
+---
 
-## I want to use a custom domain - is that possible?
+## TODOs  
 
-We don't support custom domains (yet). If you want to deploy your project under your own domain then we recommend using Netlify. Visit our docs for more details: [Custom domains](https://docs.lovable.dev/tips-tricks/custom-domain/)
+- Implement OpenAI API calls for message handling.  
+- Add a text-to-speech conversion service for real-time audio streaming.  
+- Enhance error handling for network and API issues.  
+
+---
+
+## Contributing  
+
+Contributions are welcome! Please follow these steps:  
+
+1. Fork the repository.  
+2. Create a new branch: `git checkout -b feature-name`.  
+3. Commit your changes: `git commit -m "Add new feature"`.  
+4. Push to the branch: `git push origin feature-name`.  
+5. Open a pull request.  
+
+---
+
+## License  
+
+This project is licensed under the MIT License. See the `LICENSE` file for details.  
+
+---
+
+Feel free to customize and extend this README as your project evolves! 🚀

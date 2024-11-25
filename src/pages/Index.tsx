@@ -1,16 +1,17 @@
 import { useState, useRef } from "react";
-import { ChatMessage } from "@/components/ChatMessage";
-import { ChatInput } from "@/components/ChatInput";
-import { Message } from "@/types/chat";
-import { useToast } from "@/components/ui/use-toast";
+import { ChatMessage } from "../components/ChatMessage";
+import ChatInput from "../components/ChatInput"; // Updated import statement
+import { Message } from "../types/chat";
+import { useToast } from "../components/ui/use-toast";
 import { v4 as uuidv4 } from "uuid";
-import { openai } from "@/lib/openai";
-import { TalkingCharacter } from "@/components/TalkingCharacter";
+import { openai } from "../lib/openai";
+import { TalkingCharacter } from "../components/TalkingCharacter";
 
 const Index = () => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
+  const chatInputRef = useRef<HTMLTextAreaElement>(null); // Create a ref for ChatInput
   const { toast } = useToast();
 
   const handleSend = async (content: string) => {
@@ -97,6 +98,7 @@ const Index = () => {
         isPlaying: false,
       }))
     );
+    chatInputRef.current?.focus(); // Focus the input field when audio ends
   };
 
   const isAnyMessagePlaying = messages.some((msg) => msg.isPlaying);
@@ -111,13 +113,14 @@ const Index = () => {
               key={message.id}
               message={message}
               onPlayPause={handlePlayPause}
+              onAudioEnd={handleAudioEnded} // Pass the onAudioEnd prop
             />
           ))}
         </div>
       </main>
       <div className="border-t bg-background p-4">
         <div className="mx-auto max-w-3xl">
-          <ChatInput onSend={handleSend} disabled={isLoading} />
+          <ChatInput ref={chatInputRef} onSend={handleSend} disabled={isLoading} /> {/* Pass ref to ChatInput */}
         </div>
       </div>
       <audio
