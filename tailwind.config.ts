@@ -67,8 +67,11 @@ export default {
           "50%": { opacity: "0.5" },
         },
         "mouth-move": {
-          "0%, 100%": { height: "1rem", width: "3rem" },
+          "0%": { height: "0.75rem", width: "2.5rem" },
+          "25%": { height: "1.25rem", width: "3rem" },
           "50%": { height: "0.5rem", width: "2rem" },
+          "75%": { height: "1.25rem", width: "3rem" },
+          "100%": { height: "0.75rem", width: "2.5rem" },
         },
       },
       animation: {

@@ -15,8 +15,8 @@ export const TalkingCharacter = ({ isPlaying }: TalkingCharacterProps) => {
         {/* Mouth */}
         <div
           className={cn(
-            "absolute bottom-8 left-1/2 -translate-x-1/2 w-12 h-4 bg-primary rounded-lg transition-all duration-200",
-            isPlaying && "animate-[mouth-move_0.3s_ease-in-out_infinite]"
+            "absolute bottom-8 left-1/2 -translate-x-1/2 w-10 h-3 bg-primary rounded-lg transition-all duration-75",
+            isPlaying && "animate-[mouth-move_0.2s_ease-in-out_infinite]"
           )}
         />
       </div>
