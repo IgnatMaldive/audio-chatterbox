@@ -1,6 +1,6 @@
 import { Message } from "../types/chat";
 import { Button } from "./ui/button";
-import { Play, Pause, Volume2 } from "lucide-react";
+import { Play, Pause, Volume2, Bot, User } from "lucide-react"; // Updated to use Bot icon
 import { cn } from "../lib/utils";
 import { useEffect, useRef } from "react";
 
@@ -38,7 +38,7 @@ export const ChatMessage = ({ message, onPlayPause, onAudioEnd }: ChatMessagePro
           isBot ? "border-primary bg-primary text-primary-foreground" : "border-muted-foreground/20 bg-background"
         )}
       >
-        {isBot ? <Volume2 className="h-4 w-4" /> : "You"}
+        {isBot ? <Bot className="h-4 w-4" /> : <User className="h-4 w-4" />} {/* Updated icons */}
       </div>
       <div className="flex flex-col gap-2 w-full">
         <p className="text-sm text-foreground/90">{message.content}</p>
