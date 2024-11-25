@@ -23,7 +23,6 @@ const Index = () => {
     setIsLoading(true);
 
     try {
-      // Get chat completion from OpenAI
       const completion = await openai.chat.completions.create({
         model: "gpt-4",
         messages: [
@@ -38,14 +37,12 @@ const Index = () => {
 
       const responseText = completion.choices[0]?.message?.content || "Sorry, I couldn't generate a response.";
 
-      // Generate speech from the response
       const speech = await openai.audio.speech.create({
         model: "tts-1",
         voice: "alloy",
         input: responseText,
       });
 
-      // Convert the audio data to a blob URL
       const audioBlob = new Blob([await speech.arrayBuffer()], { type: "audio/mpeg" });
       const audioUrl = URL.createObjectURL(audioBlob);
 
@@ -54,10 +51,16 @@ const Index = () => {
         role: "assistant",
         content: responseText,
         audioUrl,
-        isPlaying: false,
+        isPlaying: true,
       };
 
       setMessages((prev) => [...prev, botMessage]);
+      
+      // Auto-play the audio
+      if (audioRef.current) {
+        audioRef.current.src = audioUrl;
+        audioRef.current.play();
+      }
     } catch (error) {
       toast({
         variant: "destructive",
@@ -87,7 +90,6 @@ const Index = () => {
     );
   };
 
-  // Handle audio ended event
   const handleAudioEnded = () => {
     setMessages((prev) =>
       prev.map((msg) => ({
