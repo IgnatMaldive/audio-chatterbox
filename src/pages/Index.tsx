@@ -22,14 +22,7 @@ const Index = () => {
       content,
     };
 
-    setMessages((prev) => {
-      const updatedMessages = [...prev, newMessage];
-      // Scroll to the bottom of the chat
-      if (messagesEndRef.current) {
-        messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
-      }
-      return updatedMessages;
-    });
+    setMessages((prev) => [...prev, newMessage]);
     setIsLoading(true);
 
     try {
@@ -64,14 +57,7 @@ const Index = () => {
         isPlaying: true,
       };
 
-      setMessages((prev) => {
-        const updatedMessages = [...prev, botMessage];
-        // Scroll to the bottom of the chat
-        if (messagesEndRef.current) {
-          messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
-        }
-        return updatedMessages;
-      });
+      setMessages((prev) => [...prev, botMessage]);
       
       if (audioRef.current) {
         audioRef.current.src = audioUrl;
@@ -118,11 +104,18 @@ const Index = () => {
 
   const isAnyMessagePlaying = messages.some((msg) => msg.isPlaying);
 
+  // Auto-scroll effect
+  useEffect(() => {
+    if (messagesEndRef.current) {
+      messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [messages]); // Trigger scroll when messages change
+
   return (
     <div className="flex h-screen flex-col bg-background">
+      <TalkingCharacter isPlaying={isAnyMessagePlaying} /> {/* Moved TalkingCharacter outside */}
       <main className="flex-1 overflow-y-auto p-4">
         <div className="mx-auto max-w-3xl space-y-4">
-          <TalkingCharacter isPlaying={isAnyMessagePlaying} />
           {messages.map((message) => (
             <ChatMessage
               key={message.id}
