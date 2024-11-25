@@ -3,6 +3,9 @@
 
 Welcome to the **Audio-Enabled Chatbot** project! This repository contains the code for a chatbot interface that combines OpenAI's API with real-time text-to-speech streaming capabilities, delivering a seamless conversational experience with both text and audio outputs.  
 
+![Alt text](https://raw.githubusercontent.com/username/repository/branch-name/screenshot.jpg)
+
+
 ---
 
 ## Features  
