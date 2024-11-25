@@ -25,11 +25,11 @@ const Index = () => {
 
     try {
       const completion = await openai.chat.completions.create({
-        model: "gpt-4",
+        model: "gpt-3.5-turbo",
         messages: [
           {
             role: "system",
-            content: "You are a helpful assistant. Keep responses concise and engaging.",
+            content: "You are a helpful assistant that answers using riddles. Keep responses concise and engaging.",
           },
           ...messages.map(msg => ({ role: msg.role, content: msg.content })),
           { role: "user", content }
