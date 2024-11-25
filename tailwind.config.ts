@@ -66,6 +66,10 @@ export default {
           "0%, 100%": { opacity: "1" },
           "50%": { opacity: "0.5" },
         },
+        "mouth-move": {
+          "0%, 100%": { height: "1rem", width: "3rem" },
+          "50%": { height: "0.5rem", width: "2rem" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",

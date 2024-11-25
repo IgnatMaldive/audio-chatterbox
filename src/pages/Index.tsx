@@ -5,6 +5,7 @@ import { Message } from "@/types/chat";
 import { useToast } from "@/components/ui/use-toast";
 import { v4 as uuidv4 } from "uuid";
 import { openai } from "@/lib/openai";
+import { TalkingCharacter } from "@/components/TalkingCharacter";
 
 const Index = () => {
   const [messages, setMessages] = useState<Message[]>([]);
@@ -56,7 +57,6 @@ const Index = () => {
 
       setMessages((prev) => [...prev, botMessage]);
       
-      // Auto-play the audio
       if (audioRef.current) {
         audioRef.current.src = audioUrl;
         audioRef.current.play();
@@ -99,10 +99,13 @@ const Index = () => {
     );
   };
 
+  const isAnyMessagePlaying = messages.some((msg) => msg.isPlaying);
+
   return (
     <div className="flex h-screen flex-col bg-background">
       <main className="flex-1 overflow-y-auto p-4">
         <div className="mx-auto max-w-3xl space-y-4">
+          <TalkingCharacter isPlaying={isAnyMessagePlaying} />
           {messages.map((message) => (
             <ChatMessage
               key={message.id}
