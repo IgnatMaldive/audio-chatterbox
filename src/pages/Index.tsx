@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { ChatMessage } from "../components/ChatMessage";
 import ChatInput from "../components/ChatInput"; // Updated import statement
 import { Message } from "../types/chat";
@@ -12,6 +12,7 @@ const Index = () => {
   const [isLoading, setIsLoading] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
   const chatInputRef = useRef<HTMLTextAreaElement>(null); // Create a ref for ChatInput
+  const messagesEndRef = useRef<HTMLDivElement>(null); // Ref for the end of messages
   const { toast } = useToast();
 
   const handleSend = async (content: string) => {
@@ -21,7 +22,14 @@ const Index = () => {
       content,
     };
 
-    setMessages((prev) => [...prev, newMessage]);
+    setMessages((prev) => {
+      const updatedMessages = [...prev, newMessage];
+      // Scroll to the bottom of the chat
+      if (messagesEndRef.current) {
+        messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+      }
+      return updatedMessages;
+    });
     setIsLoading(true);
 
     try {
@@ -56,7 +64,14 @@ const Index = () => {
         isPlaying: true,
       };
 
-      setMessages((prev) => [...prev, botMessage]);
+      setMessages((prev) => {
+        const updatedMessages = [...prev, botMessage];
+        // Scroll to the bottom of the chat
+        if (messagesEndRef.current) {
+          messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+        }
+        return updatedMessages;
+      });
       
       if (audioRef.current) {
         audioRef.current.src = audioUrl;
@@ -116,6 +131,7 @@ const Index = () => {
               onAudioEnd={handleAudioEnded} // Pass the onAudioEnd prop
             />
           ))}
+          <div ref={messagesEndRef} /> {/* Empty div to scroll to */}
         </div>
       </main>
       <div className="border-t bg-background p-4">
